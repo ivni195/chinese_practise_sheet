@@ -46,7 +46,7 @@ def create_sheet(kanji='', repeat_rows=2, margin_size=50):
 	ypos = y_margin
 
 	draw = ImageDraw.Draw(a4)
-	draw.text((0,0), 'a', font=font)
+
 	for y in range(ny):
 	    xpos = x_margin
 	    for x in range(nx):
