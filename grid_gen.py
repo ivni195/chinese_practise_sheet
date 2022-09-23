@@ -51,7 +51,8 @@ def create_sheet(kanji='', repeat_rows=2, margin_size=50):
 	    xpos = x_margin
 	    for x in range(nx):
 	        a4.paste(grid_el, calc_shifted_bbox(grid_el, xpos, ypos))
-	        draw.text(calc_shifted_upper_left(grid_el, xpos, ypos), kanji[x], font=font, fill='grey')
+	        if y < repeat_rows:
+	        	draw.text(calc_shifted_upper_left(grid_el, xpos, ypos), kanji[x], font=font, fill='grey')
 	        xpos += gridx + paddingx
 	    ypos += gridy + paddingy
 
@@ -61,7 +62,7 @@ def create_sheet(kanji='', repeat_rows=2, margin_size=50):
 if __name__ == '__main__':
 	parser = ArgumentParser(description='Create custom practice sheets for chinese/japanese calligraphy.')
 	parser.add_argument('kanji', type=str, help='The chinese characters (without spaces between).')
-	parser.add_argument('--repeat-rows', '-n', default='2', help='Number of rows of traceable characters.')
+	parser.add_argument('--repeat-rows', '-n', type=int, default='2', help='Number of rows of traceable characters.')
 	parser.add_argument('--margin-size', '-msize', type=int, default='50', help='Number of rows of traceable characters.')
 	args = parser.parse_args()
 	create_sheet(**args.__dict__)
